@@ -90,9 +90,6 @@ export default function App() {
             {/* Dobra 2: Produção Própria de Concreto Asfáltico */}
             <ProductionSection />
 
-            {/* Dobra 3: Integração Operacional com Pedreira PedraForte */}
-            <IntegrationSection />
-
             {/* Dobra 4: Estrutura Produtiva e Tecnológica (Usina Ammann 180) */}
             <PlantStructureSection onOpenQuoteModal={handleOpenQuoteModal} />
 

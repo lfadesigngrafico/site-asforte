@@ -8,12 +8,12 @@ interface HeroSectionProps {
 
 export const HeroSection: React.FC<HeroSectionProps> = ({ onOpenQuoteModal }) => {
   return (
-    <section id="hero" className="relative w-full min-h-screen bg-[#192F4D] text-white overflow-hidden">
+    <section id="hero" className="relative w-full min-h-[580px] lg:min-h-[640px] lg:max-h-[850px] lg:h-screen bg-[#192F4D] text-white overflow-hidden flex flex-col justify-center">
       {/* 2-Column Split Layout */}
-      <div className="grid grid-cols-1 lg:grid-cols-12 w-full min-h-screen">
+      <div className="grid grid-cols-1 lg:grid-cols-12 w-full h-full min-h-[580px] lg:min-h-[640px]">
         
         {/* Left Column - Dark Blue Blueprint Vector Map Background */}
-        <div className="lg:col-span-6 relative bg-[#192F4D] flex flex-col justify-center px-6 sm:px-12 lg:px-16 xl:px-20 min-h-[580px] lg:min-h-screen pt-36 lg:pt-44 pb-16">
+        <div className="lg:col-span-6 relative bg-[#192F4D] flex flex-col justify-center px-6 sm:px-12 lg:px-14 xl:px-18 min-h-[480px] lg:min-h-full pt-28 sm:pt-32 lg:pt-28 pb-10 sm:pb-12">
           {/* Blueprint Map Background Image */}
           <div
             className="absolute inset-0 z-0 bg-cover bg-center pointer-events-none opacity-95"

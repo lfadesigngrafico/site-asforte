@@ -25,7 +25,7 @@ export const ProductionSection: React.FC = () => {
   }, [nextSlide]);
 
   return (
-    <section className="py-16 sm:py-20 md:py-24 bg-white text-[#1D2A3A]">
+    <section className="py-10 sm:py-12 md:py-14 bg-white text-[#1D2A3A]">
       <div className="max-w-[1240px] mx-auto px-5 md:px-8">
         
         {/* Top Header - 2 Columns (Matching reference layout exactly) */}
@@ -34,19 +34,19 @@ export const ProductionSection: React.FC = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-50px' }}
           transition={{ duration: 0.6, ease: 'easeOut' }}
-          className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start mb-12 lg:mb-16"
+          className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-10 items-start mb-6 lg:mb-8"
         >
           
           {/* Left Column: Vertical Red Accent Line + Title */}
           <div className="lg:col-span-6 flex items-stretch gap-4">
-            <div className="w-1.5 bg-[#E3371E] shrink-0 min-h-[50px]" />
-            <h2 className="font-barlow font-black text-[#192F4D] text-2xl sm:text-3xl lg:text-[34px] xl:text-[38px] uppercase leading-tight tracking-tight">
+            <div className="w-1.5 bg-[#E3371E] shrink-0 min-h-[44px]" />
+            <h2 className="font-barlow font-black text-[#192F4D] text-2xl sm:text-3xl lg:text-[32px] xl:text-[36px] uppercase leading-tight tracking-tight">
               Produção própria para obras públicas e privadas
             </h2>
           </div>
 
           {/* Right Column: Paragraph Text */}
-          <div className="lg:col-span-6 space-y-4 text-slate-700 text-base lg:text-[17px] leading-relaxed font-normal">
+          <div className="lg:col-span-6 space-y-2 text-slate-700 text-sm sm:text-base lg:text-[16px] leading-relaxed font-normal">
             <p>
               A Asforte atende obras que exigem qualidade, regularidade e eficiência no fornecimento de concreto asfáltico.
             </p>
@@ -57,7 +57,7 @@ export const ProductionSection: React.FC = () => {
 
         </motion.div>
 
-        {/* Carousel Container */}
+        {/* Carousel Container with 4:3 aspect ratio */}
         <motion.div 
           initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -66,7 +66,7 @@ export const ProductionSection: React.FC = () => {
           className="relative w-full overflow-hidden border border-slate-200 shadow-md group"
         >
           {/* Image Display */}
-          <div className="relative h-[320px] sm:h-[420px] md:h-[500px] lg:h-[560px] w-full bg-slate-900 overflow-hidden">
+          <div className="relative aspect-[4/3] sm:aspect-[16/9] lg:aspect-[21/9] max-h-[420px] lg:max-h-[440px] w-full bg-slate-900 overflow-hidden">
             {PRODUCTION_CAROUSEL_IMAGES.map((imgUrl, index) => (
               <div
                 key={index}
@@ -83,32 +83,32 @@ export const ProductionSection: React.FC = () => {
             ))}
           </div>
 
-          {/* Carousel Arrows */}
+          {/* Carousel Arrows (compact on mobile) */}
           <button
             onClick={prevSlide}
             aria-label="Imagem Anterior"
-            className="absolute left-4 top-1/2 -translate-y-1/2 z-20 bg-[#192F4D]/80 hover:bg-[#E3371E] text-white p-3 transition-colors duration-200 rounded-none border-none cursor-pointer"
+            className="absolute left-2 sm:left-4 top-1/2 -translate-y-1/2 z-20 bg-[#192F4D]/80 hover:bg-[#E3371E] text-white p-1.5 sm:p-2.5 md:p-3 transition-colors duration-200 rounded-none border-none cursor-pointer"
           >
-            <ChevronLeft className="w-6 h-6" />
+            <ChevronLeft className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6" />
           </button>
           
           <button
             onClick={nextSlide}
             aria-label="Próxima Imagem"
-            className="absolute right-4 top-1/2 -translate-y-1/2 z-20 bg-[#192F4D]/80 hover:bg-[#E3371E] text-white p-3 transition-colors duration-200 rounded-none border-none cursor-pointer"
+            className="absolute right-2 sm:right-4 top-1/2 -translate-y-1/2 z-20 bg-[#192F4D]/80 hover:bg-[#E3371E] text-white p-1.5 sm:p-2.5 md:p-3 transition-colors duration-200 rounded-none border-none cursor-pointer"
           >
-            <ChevronRight className="w-6 h-6" />
+            <ChevronRight className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6" />
           </button>
 
-          {/* Carousel Indicators / Dots */}
-          <div className="absolute bottom-5 left-1/2 -translate-x-1/2 z-20 flex items-center gap-2">
+          {/* Carousel Indicators / Dots (compact on mobile) */}
+          <div className="absolute bottom-3 sm:bottom-5 left-1/2 -translate-x-1/2 z-20 flex items-center gap-1.5 sm:gap-2">
             {PRODUCTION_CAROUSEL_IMAGES.map((_, index) => (
               <button
                 key={index}
                 onClick={() => setCurrentIndex(index)}
                 aria-label={`Ir para a imagem ${index + 1}`}
-                className={`h-2.5 transition-all duration-300 rounded-none border-none cursor-pointer ${
-                  index === currentIndex ? 'w-8 bg-[#E3371E]' : 'w-2.5 bg-white/70 hover:bg-white'
+                className={`h-1.5 sm:h-2.5 transition-all duration-300 rounded-none border-none cursor-pointer ${
+                  index === currentIndex ? 'w-5 sm:w-8 bg-[#E3371E]' : 'w-1.5 sm:w-2.5 bg-white/70 hover:bg-white'
                 }`}
               />
             ))}

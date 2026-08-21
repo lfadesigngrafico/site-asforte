@@ -31,9 +31,9 @@ export const PLANT_STRUCTURE_ASSETS = {
 };
 
 export const PRODUCT_ASSETS = {
-  card1: 'https://d335luupugsy2.cloudfront.net/cms/files/38500/1785504703/$qhygvikama',
+  card1: 'https://d335luupugsy2.cloudfront.net/cms/files/38500/1787259832/$umvjjusrkw',
   card2: 'https://d335luupugsy2.cloudfront.net/cms/files/38500/1785504703/$h0g8y3k8nha',
-  card3: 'https://d335luupugsy2.cloudfront.net/cms/files/38500/1785504703/$63qay2itbej',
+  card3: 'https://d335luupugsy2.cloudfront.net/cms/files/38500/1787259994/$gqmmbvi8vq6',
 };
 
 export const COLOR_PALETTE = {

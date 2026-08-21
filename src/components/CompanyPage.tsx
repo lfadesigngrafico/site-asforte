@@ -71,7 +71,7 @@ export const CompanyPage: React.FC<CompanyPageProps> = ({ onOpenQuoteModal, onNa
             
             <div className="relative z-10 max-w-xl">
               <h1 className="font-barlow font-black text-white text-3xl sm:text-4xl lg:text-[42px] xl:text-[46px] uppercase leading-[1.12] tracking-tight">
-                ASFORTE: PRODUÇÃO PRÓPRIA DE CONCRETO ASFÁLTICO COM ESTRUTURA INTEGRADA
+                ASFORTE: CONCRETO ASFÁLTICO PARA PAVIMENTAÇÃO E INFRAESTRUTURA
               </h1>
             </div>
           </motion.div>
@@ -141,30 +141,30 @@ export const CompanyPage: React.FC<CompanyPageProps> = ({ onOpenQuoteModal, onNa
                   className="w-full h-full object-cover object-center transition-all duration-700 ease-in-out group-hover:scale-102"
                 />
 
-                {/* Navigation Chevrons */}
+                {/* Navigation Chevrons (compact on mobile) */}
                 <button
                   onClick={handlePrevSlide}
-                  className="absolute left-3 top-1/2 -translate-y-1/2 bg-black/40 hover:bg-[#E3371E] text-white p-2.5 transition-colors cursor-pointer"
+                  className="absolute left-2 sm:left-3 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-[#E3371E] text-white p-1.5 sm:p-2.5 transition-colors cursor-pointer"
                   aria-label="Imagem Anterior"
                 >
-                  <ChevronLeft className="w-5 h-5" />
+                  <ChevronLeft className="w-4 h-4 sm:w-5 sm:h-5" />
                 </button>
                 <button
                   onClick={handleNextSlide}
-                  className="absolute right-3 top-1/2 -translate-y-1/2 bg-black/40 hover:bg-[#E3371E] text-white p-2.5 transition-colors cursor-pointer"
+                  className="absolute right-2 sm:right-3 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-[#E3371E] text-white p-1.5 sm:p-2.5 transition-colors cursor-pointer"
                   aria-label="Próxima Imagem"
                 >
-                  <ChevronRight className="w-5 h-5" />
+                  <ChevronRight className="w-4 h-4 sm:w-5 sm:h-5" />
                 </button>
 
-                {/* Indicator Dots */}
-                <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex items-center gap-2">
+                {/* Indicator Dots (compact on mobile) */}
+                <div className="absolute bottom-2.5 sm:bottom-4 left-1/2 -translate-x-1/2 flex items-center gap-1.5 sm:gap-2">
                   {COMPANY_CAROUSEL_IMAGES.map((_, idx) => (
                     <button
                       key={idx}
                       onClick={() => setCurrentSlide(idx)}
-                      className={`h-2 transition-all duration-300 cursor-pointer ${
-                        currentSlide === idx ? 'w-6 bg-[#E3371E]' : 'w-2 bg-white/60 hover:bg-white'
+                      className={`h-1.5 sm:h-2 transition-all duration-300 cursor-pointer ${
+                        currentSlide === idx ? 'w-4 sm:w-6 bg-[#E3371E]' : 'w-1.5 sm:w-2 bg-white/60 hover:bg-white'
                       }`}
                       aria-label={`Slide ${idx + 1}`}
                     />
@@ -468,30 +468,30 @@ export const CompanyPage: React.FC<CompanyPageProps> = ({ onOpenQuoteModal, onNa
                 className="w-full h-full object-cover transition-all duration-500"
               />
 
-              {/* Previous / Next Buttons */}
+              {/* Previous / Next Buttons (compact on mobile) */}
               <button
                 onClick={handlePrevSlide}
-                className="absolute left-4 top-1/2 -translate-y-1/2 bg-[#192F4D]/85 hover:bg-[#192F4D] text-white p-3 sm:p-4 transition-colors cursor-pointer shadow-lg z-10"
+                className="absolute left-2 sm:left-4 top-1/2 -translate-y-1/2 bg-[#192F4D]/85 hover:bg-[#192F4D] text-white p-1.5 sm:p-3 transition-colors cursor-pointer shadow-lg z-10"
                 aria-label="Imagem Anterior"
               >
-                <ChevronLeft className="w-6 h-6" />
+                <ChevronLeft className="w-4 h-4 sm:w-6 sm:h-6" />
               </button>
               <button
                 onClick={handleNextSlide}
-                className="absolute right-4 top-1/2 -translate-y-1/2 bg-[#192F4D]/85 hover:bg-[#192F4D] text-white p-3 sm:p-4 transition-colors cursor-pointer shadow-lg z-10"
+                className="absolute right-2 sm:right-4 top-1/2 -translate-y-1/2 bg-[#192F4D]/85 hover:bg-[#192F4D] text-white p-1.5 sm:p-3 transition-colors cursor-pointer shadow-lg z-10"
                 aria-label="Próxima Imagem"
               >
-                <ChevronRight className="w-6 h-6" />
+                <ChevronRight className="w-4 h-4 sm:w-6 sm:h-6" />
               </button>
 
-              {/* Dots / Indicators */}
-              <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex items-center gap-2 bg-[#192F4D]/80 px-4 py-2 rounded-full z-10">
+              {/* Dots / Indicators (compact on mobile) */}
+              <div className="absolute bottom-2.5 sm:bottom-4 left-1/2 -translate-x-1/2 flex items-center gap-1.5 sm:gap-2 bg-[#192F4D]/80 px-2.5 sm:px-4 py-1 sm:py-2 rounded-full z-10">
                 {COMPANY_CAROUSEL_IMAGES.map((_, idx) => (
                   <button
                     key={idx}
                     onClick={() => setCurrentSlide(idx)}
-                    className={`h-2.5 rounded-full transition-all cursor-pointer ${
-                      idx === currentSlide ? 'w-8 bg-[#E3371E]' : 'w-2.5 bg-white/60 hover:bg-white'
+                    className={`h-1.5 sm:h-2.5 rounded-full transition-all cursor-pointer ${
+                      idx === currentSlide ? 'w-5 sm:w-8 bg-[#E3371E]' : 'w-1.5 sm:w-2.5 bg-white/60 hover:bg-white'
                     }`}
                     aria-label={`Ir para imagem ${idx + 1}`}
                   />
@@ -521,28 +521,12 @@ export const CompanyPage: React.FC<CompanyPageProps> = ({ onOpenQuoteModal, onNa
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: '-50px' }}
             transition={{ duration: 0.6, ease: 'easeOut' }}
-            className="flex items-center gap-3 mb-6"
+            className="flex items-center gap-3 mb-10 lg:mb-12"
           >
             <div className="w-1.5 h-8 bg-[#E3371E] shrink-0" />
             <h2 className="font-barlow font-bold text-white text-2xl sm:text-3xl lg:text-4xl uppercase tracking-tight">
               CAPACIDADE OPERACIONAL EM NÚMEROS
             </h2>
-          </motion.div>
-
-          {/* Copy Paragraphs */}
-          <motion.div 
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: '-50px' }}
-            transition={{ duration: 0.6, delay: 0.1, ease: 'easeOut' }}
-            className="space-y-4 text-slate-100 text-sm sm:text-base lg:text-lg leading-relaxed font-normal max-w-[850px] mb-12"
-          >
-            <p>
-              A operação reúne produção própria de concreto asfáltico, agregados minerais integrados, unidades estratégicas, controle de qualidade, frota própria e suporte técnico/comercial.
-            </p>
-            <p>
-              Na prática, essa estrutura apoia obras que precisam de materiais adequados à aplicação e planejamento logístico.
-            </p>
           </motion.div>
 
           {/* 4 Cards Grid */}

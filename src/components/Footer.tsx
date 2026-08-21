@@ -107,7 +107,6 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
               <li className="hover:text-white">Concreto Asfáltico (CBUQ)</li>
               <li className="hover:text-white">Asfalto Polímero de Alta Viscosidade</li>
               <li className="hover:text-white">Binder Asfáltico Estrutural</li>
-              <li className="hover:text-white">Agregados Minerais Selecionados</li>
               <li className="hover:text-white">Pavimentação de Rodovias & Concessões</li>
               <li className="hover:text-white">Obras Públicas & Vias Urbanas</li>
               <li className="hover:text-white">Pátios Industriais & Centros Logísticos</li>

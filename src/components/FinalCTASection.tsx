@@ -11,7 +11,7 @@ export const FinalCTASection: React.FC<FinalCTASectionProps> = () => {
   const whatsappUrl = `https://wa.me/55${whatsappNumber}?text=${encodeURIComponent('Olá, gostaria de solicitar uma cotação de concreto asfáltico com a Asforte.')}`;
 
   return (
-    <section id="contato" className="py-16 sm:py-20 md:py-24 bg-white text-[#1D2A3A]">
+    <section id="contato" className="py-10 sm:py-12 md:py-14 bg-white text-[#1D2A3A]">
       <div className="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Container: Red/Orange Box Left + Image Right */}
@@ -24,14 +24,14 @@ export const FinalCTASection: React.FC<FinalCTASectionProps> = () => {
         >
           
           {/* Left Column (Orange Background) */}
-          <div className="lg:col-span-7 xl:col-span-8 bg-[#E3371E] text-white p-8 sm:p-12 lg:p-14 flex flex-col justify-between items-start text-left">
+          <div className="lg:col-span-7 xl:col-span-8 bg-[#E3371E] text-white p-6 sm:p-10 lg:p-12 flex flex-col justify-between items-start text-left">
             
-            <div className="space-y-4 mb-8">
-              <h2 className="font-barlow font-black text-white text-2xl sm:text-3xl lg:text-[34px] xl:text-[38px] leading-tight uppercase tracking-tight">
-                PRECISA DE CONCRETO ASFÁLTICO<br className="hidden sm:inline" /> OU AGREGADOS PARA SUA OBRA?
+            <div className="space-y-3 mb-6">
+              <h2 className="font-barlow font-black text-white text-2xl sm:text-3xl lg:text-[32px] xl:text-[36px] leading-tight uppercase tracking-tight">
+                PRECISA DE CONCRETO ASFÁLTICO<br className="hidden sm:inline" /> PARA SUA OBRA?
               </h2>
 
-              <p className="text-white/95 text-base sm:text-lg font-normal leading-relaxed max-w-xl">
+              <p className="text-white/95 text-sm sm:text-base lg:text-lg font-normal leading-relaxed max-w-xl">
                 Envie as informações do seu projeto para avaliação comercial.
               </p>
             </div>
@@ -41,7 +41,7 @@ export const FinalCTASection: React.FC<FinalCTASectionProps> = () => {
                 href={whatsappUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center justify-center bg-[#192F4D] hover:bg-[#102138] text-white font-barlow font-black text-xs sm:text-sm uppercase tracking-wider px-8 py-4 shadow-md hover:shadow-lg hover:-translate-y-0.5 transition-all duration-200"
+                className="inline-flex items-center justify-center bg-[#192F4D] hover:bg-[#102138] text-white font-barlow font-black text-xs sm:text-sm uppercase tracking-wider px-7 py-3.5 shadow-md hover:shadow-lg hover:-translate-y-0.5 transition-all duration-200"
               >
                 SOLICITAR ORÇAMENTO PELO WHATSAPP
               </a>
@@ -49,8 +49,8 @@ export const FinalCTASection: React.FC<FinalCTASectionProps> = () => {
 
           </div>
 
-          {/* Right Column (Laboratory/Aggregate Image) */}
-          <div className="lg:col-span-5 xl:col-span-4 relative min-h-[280px] sm:min-h-[340px] lg:min-h-full bg-slate-100 overflow-hidden group">
+          {/* Right Column (Laboratory/Aggregate Image in 4:3) */}
+          <div className="lg:col-span-5 xl:col-span-4 relative aspect-[4/3] lg:aspect-auto min-h-[240px] sm:min-h-[280px] lg:min-h-full bg-slate-100 overflow-hidden group">
             <img
               src={FOOTER_ASSETS.ctaContainerImage}
               alt="Avaliação de agregados em laboratório - Asforte"

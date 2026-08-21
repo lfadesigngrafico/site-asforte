@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useCallback } from 'react';
-import { motion } from 'motion/react';
-import { ChevronLeft, ChevronRight } from 'lucide-react';
+import { motion, AnimatePresence } from 'motion/react';
+import { ChevronLeft, ChevronRight, X, ZoomIn } from 'lucide-react';
 import { LOCATION_ASSETS } from '../constants/assets';
 
 interface LocationLogisticsSectionProps {
@@ -11,6 +11,7 @@ export const LocationLogisticsSection: React.FC<LocationLogisticsSectionProps> =
   onOpenQuoteModal,
 }) => {
   const [currentSlideIndex, setCurrentSlideIndex] = useState(0);
+  const [modalImage, setModalImage] = useState<{ src: string; title: string; subtitle: string } | null>(null);
 
   const nextSlide = useCallback(() => {
     setCurrentSlideIndex((prev) => (prev + 1) % LOCATION_ASSETS.carouselSlides.length);
@@ -54,7 +55,7 @@ export const LocationLogisticsSection: React.FC<LocationLogisticsSectionProps> =
   ];
 
   return (
-    <section id="localizacao" className="py-16 sm:py-20 md:py-24 bg-white text-[#1D2A3A]">
+    <section id="localizacao" className="py-10 sm:py-12 md:py-14 bg-white text-[#1D2A3A]">
       <div className="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Top Header - 2 Columns */}
@@ -63,19 +64,19 @@ export const LocationLogisticsSection: React.FC<LocationLogisticsSectionProps> =
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-50px' }}
           transition={{ duration: 0.6, ease: 'easeOut' }}
-          className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start mb-12 lg:mb-16"
+          className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-10 items-start mb-6 lg:mb-8"
         >
           
           {/* Left Column: Vertical Red Bar + Title */}
           <div className="lg:col-span-6 flex items-stretch gap-4">
-            <div className="w-1.5 bg-[#E3371E] shrink-0 min-h-[50px]" />
-            <h2 className="font-barlow font-black text-[#192F4D] text-2xl sm:text-3xl lg:text-[34px] xl:text-[38px] uppercase leading-tight tracking-tight">
+            <div className="w-1.5 bg-[#E3371E] shrink-0 min-h-[44px]" />
+            <h2 className="font-barlow font-black text-[#192F4D] text-2xl sm:text-3xl lg:text-[32px] xl:text-[36px] uppercase leading-tight tracking-tight">
               Localização estratégica para atender os principais mercados da região
             </h2>
           </div>
 
           {/* Right Column: Text Paragraphs */}
-          <div className="lg:col-span-6 space-y-4 text-slate-700 text-base lg:text-[17px] leading-relaxed font-normal">
+          <div className="lg:col-span-6 space-y-2 text-slate-700 text-sm sm:text-base lg:text-[16px] leading-relaxed font-normal">
             <p>
               Com unidades em São José dos Campos e Santa Isabel, a operação está posicionada para atender a Região Metropolitana de São Paulo, o Vale do Paraíba e importantes corredores logísticos do Estado.
             </p>
@@ -86,17 +87,17 @@ export const LocationLogisticsSection: React.FC<LocationLogisticsSectionProps> =
 
         </motion.div>
 
-        {/* Operational Location Carousel Container */}
+        {/* Operational Location Carousel Container (4:3 ratio) */}
         <motion.div 
           initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-50px' }}
           transition={{ duration: 0.6, delay: 0.15, ease: 'easeOut' }}
-          className="relative w-full overflow-hidden border border-slate-200 shadow-md mb-12 lg:mb-16 group bg-slate-900"
+          className="relative w-full overflow-hidden border border-slate-200 shadow-md mb-8 lg:mb-10 group bg-slate-900"
         >
           
-          {/* Carousel Image viewport */}
-          <div className="relative h-[320px] sm:h-[420px] md:h-[500px] lg:h-[540px] w-full overflow-hidden">
+          {/* Carousel Image viewport (4:3 aspect ratio) */}
+          <div className="relative aspect-[4/3] sm:aspect-[16/9] lg:aspect-[21/9] max-h-[380px] lg:max-h-[400px] w-full overflow-hidden">
             {LOCATION_ASSETS.carouselSlides.map((slide, index) => (
               <div
                 key={index}
@@ -113,14 +114,14 @@ export const LocationLogisticsSection: React.FC<LocationLogisticsSectionProps> =
             ))}
 
             {/* Top Badge Overlay */}
-            <div className="absolute top-6 left-6 z-20 bg-[#192F4D]/90 backdrop-blur-sm text-white px-4 py-2 flex items-center gap-2 border-l-2 border-[#E3371E]">
-              <span className="font-condensed font-extrabold uppercase text-xs sm:text-sm tracking-wider">
+            <div className="absolute top-3 left-3 sm:top-6 sm:left-6 z-20 bg-[#192F4D]/90 backdrop-blur-sm text-white px-2.5 py-1 sm:px-4 sm:py-2 flex items-center gap-2 border-l-2 border-[#E3371E]">
+              <span className="font-condensed font-extrabold uppercase text-[10px] sm:text-xs md:text-sm tracking-wider">
                 LOCALIZAÇÃO E EFICIÊNCIA OPERACIONAL
               </span>
             </div>
 
             {/* Bottom Overlay Badge - Current Slide Info */}
-            <div className="absolute bottom-6 left-6 z-20 hidden sm:flex items-stretch gap-3">
+            <div className="absolute bottom-3 left-3 sm:bottom-6 sm:left-6 z-20 hidden sm:flex items-stretch gap-3">
               <div className="bg-white text-[#192F4D] p-3 shadow-lg border-l-4 border-[#E3371E]">
                 <div className="font-barlow font-black text-sm uppercase flex items-center gap-1.5">
                   <span>{currentSlide.title}</span>
@@ -135,30 +136,31 @@ export const LocationLogisticsSection: React.FC<LocationLogisticsSectionProps> =
               </div>
             </div>
 
-            {/* Arrows */}
+            {/* Arrows (compact on mobile) */}
             <button
               onClick={prevSlide}
               aria-label="Anterior"
-              className="absolute left-4 top-1/2 -translate-y-1/2 z-20 bg-[#192F4D]/80 hover:bg-[#E3371E] text-white p-3 transition-colors rounded-none border-none cursor-pointer"
+              className="absolute left-2 sm:left-4 top-1/2 -translate-y-1/2 z-20 bg-[#192F4D]/80 hover:bg-[#E3371E] text-white p-1.5 sm:p-2.5 md:p-3 transition-colors rounded-none border-none cursor-pointer"
             >
-              <ChevronLeft className="w-6 h-6" />
+              <ChevronLeft className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6" />
             </button>
             <button
               onClick={nextSlide}
               aria-label="Próximo"
-              className="absolute right-4 top-1/2 -translate-y-1/2 z-20 bg-[#192F4D]/80 hover:bg-[#E3371E] text-white p-3 transition-colors rounded-none border-none cursor-pointer"
+              className="absolute right-2 sm:right-4 top-1/2 -translate-y-1/2 z-20 bg-[#192F4D]/80 hover:bg-[#E3371E] text-white p-1.5 sm:p-2.5 md:p-3 transition-colors rounded-none border-none cursor-pointer"
             >
-              <ChevronRight className="w-6 h-6" />
+              <ChevronRight className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6" />
             </button>
 
-            {/* Carousel Dots */}
-            <div className="absolute bottom-4 right-6 z-20 flex items-center gap-2">
+            {/* Carousel Dots (compact on mobile) */}
+            <div className="absolute bottom-2.5 right-3 sm:bottom-4 sm:right-6 z-20 flex items-center gap-1.5 sm:gap-2">
               {LOCATION_ASSETS.carouselSlides.map((_, index) => (
                 <button
                   key={index}
                   onClick={() => setCurrentSlideIndex(index)}
-                  className={`h-2 transition-all duration-300 rounded-none border-none cursor-pointer ${
-                    index === currentSlideIndex ? 'w-8 bg-[#E3371E]' : 'w-2 bg-white/70'
+                  aria-label={`Slide ${index + 1}`}
+                  className={`h-1.5 sm:h-2 transition-all duration-300 rounded-none border-none cursor-pointer ${
+                    index === currentSlideIndex ? 'w-5 sm:w-8 bg-[#E3371E]' : 'w-1.5 sm:w-2 bg-white/70 hover:bg-white'
                   }`}
                 />
               ))}
@@ -200,30 +202,53 @@ export const LocationLogisticsSection: React.FC<LocationLogisticsSectionProps> =
                   className="w-7 h-7 object-contain shrink-0"
                 />
               </div>
-              <div className="flex items-center gap-3 text-[#192F4D]">
-                <img
-                  src={LOCATION_ASSETS.santaIsabelIcon}
-                  alt="Ícone Pedreira PedraForte"
-                  className="w-10 h-10 object-contain shrink-0"
-                />
-                <div>
-                  <div className="font-condensed font-extrabold text-base sm:text-lg uppercase text-[#192F4D] leading-tight">
-                    Pedreira PedraForte
-                  </div>
-                  <div className="font-condensed text-xs sm:text-sm text-slate-600 font-semibold">
-                    Rod. Pres. Dutra, KM 194,5
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-[#192F4D]">
+                <div className="flex items-center gap-3">
+                  <img
+                    src={LOCATION_ASSETS.santaIsabelIcon}
+                    alt="Ícone Pedreira PedraForte"
+                    className="w-10 h-10 object-contain shrink-0"
+                  />
+                  <div>
+                    <div className="font-condensed font-extrabold text-base sm:text-lg uppercase text-[#192F4D] leading-tight">
+                      Pedreira PedraForte
+                    </div>
+                    <div className="font-condensed text-xs sm:text-sm text-slate-600 font-semibold">
+                      Rod. Pres. Dutra, KM 194,5
+                    </div>
                   </div>
                 </div>
+                <a
+                  href="https://maps.app.goo.gl/EBj6tJi75qXJ9T5WA"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center justify-center px-4 py-2 bg-[#E3371E] hover:bg-[#102138] text-white font-barlow font-bold text-xs uppercase tracking-wider transition-all duration-200 shadow-sm hover:shadow hover:-translate-y-0.5 shrink-0 text-center cursor-pointer self-start sm:self-auto"
+                >
+                  ABRIR NO MAPA
+                </a>
               </div>
             </div>
 
-            {/* Satellite Map Box Image */}
-            <div className="relative w-full overflow-hidden mb-4 shadow-md bg-[#0c1829] border border-white/20 group">
+            {/* Satellite Map Box Image with Click to Zoom Pop-up */}
+            <div 
+              onClick={() => setModalImage({
+                src: LOCATION_ASSETS.santaIsabelMap,
+                title: 'Santa Isabel | SP',
+                subtitle: 'Pedreira PedraForte - Rod. Pres. Dutra, KM 194,5'
+              })}
+              className="relative w-full overflow-hidden mb-4 shadow-md bg-[#0c1829] border border-white/20 group cursor-pointer"
+            >
               <img
                 src={LOCATION_ASSETS.santaIsabelMap}
                 alt="Mapa de Localização - Santa Isabel / SP - Pedreira PedraForte"
                 className="w-full h-auto max-h-[320px] object-cover object-center block group-hover:scale-102 transition-transform duration-500"
               />
+              <div className="absolute inset-0 bg-black/20 group-hover:bg-black/40 transition-colors flex items-center justify-center">
+                <div className="bg-[#192F4D]/90 text-white px-3 py-1.5 flex items-center gap-2 text-xs font-condensed font-bold uppercase tracking-wider opacity-90 group-hover:opacity-100 shadow-md">
+                  <ZoomIn className="w-4 h-4 text-[#E3371E]" />
+                  <span>Clique para ampliar</span>
+                </div>
+              </div>
             </div>
 
             {/* Distances Box (Orange Header/Background) */}
@@ -273,30 +298,53 @@ export const LocationLogisticsSection: React.FC<LocationLogisticsSectionProps> =
                   className="w-7 h-7 object-contain shrink-0"
                 />
               </div>
-              <div className="flex items-center gap-3 text-[#192F4D]">
-                <img
-                  src={LOCATION_ASSETS.sjcIcon}
-                  alt="Ícone Asforte LTDA"
-                  className="w-10 h-10 object-contain shrink-0"
-                />
-                <div>
-                  <div className="font-condensed font-extrabold text-base sm:text-lg uppercase text-[#192F4D] leading-tight">
-                    Asforte Concreto Asfáltico LTDA
-                  </div>
-                  <div className="font-condensed text-xs sm:text-sm text-slate-600 font-semibold">
-                    Av. São Afonso Maria, 381, Bairro da Pernambucana
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-[#192F4D]">
+                <div className="flex items-center gap-3">
+                  <img
+                    src={LOCATION_ASSETS.sjcIcon}
+                    alt="Ícone Asforte LTDA"
+                    className="w-10 h-10 object-contain shrink-0"
+                  />
+                  <div>
+                    <div className="font-condensed font-extrabold text-base sm:text-lg uppercase text-[#192F4D] leading-tight">
+                      Asforte Concreto Asfáltico LTDA
+                    </div>
+                    <div className="font-condensed text-xs sm:text-sm text-slate-600 font-semibold">
+                      Av. São Afonso Maria, 381, Bairro da Pernambucana
+                    </div>
                   </div>
                 </div>
+                <a
+                  href="https://maps.app.goo.gl/duyeoyU9t2aQpZt17"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center justify-center px-4 py-2 bg-[#E3371E] hover:bg-[#102138] text-white font-barlow font-bold text-xs uppercase tracking-wider transition-all duration-200 shadow-sm hover:shadow hover:-translate-y-0.5 shrink-0 text-center cursor-pointer self-start sm:self-auto"
+                >
+                  ABRIR NO MAPA
+                </a>
               </div>
             </div>
 
-            {/* Satellite Map Box Image */}
-            <div className="relative w-full overflow-hidden mb-4 shadow-md bg-[#0c1829] border border-white/20 group">
+            {/* Satellite Map Box Image with Click to Zoom Pop-up */}
+            <div 
+              onClick={() => setModalImage({
+                src: LOCATION_ASSETS.sjcMap,
+                title: 'São José dos Campos | SP',
+                subtitle: 'Asforte Concreto Asfáltico LTDA - Av. São Afonso Maria, 381'
+              })}
+              className="relative w-full overflow-hidden mb-4 shadow-md bg-[#0c1829] border border-white/20 group cursor-pointer"
+            >
               <img
                 src={LOCATION_ASSETS.sjcMap}
                 alt="Mapa de Localização - São José dos Campos / SP - Asforte"
                 className="w-full h-auto max-h-[320px] object-cover object-center block group-hover:scale-102 transition-transform duration-500"
               />
+              <div className="absolute inset-0 bg-black/20 group-hover:bg-black/40 transition-colors flex items-center justify-center">
+                <div className="bg-[#192F4D]/90 text-white px-3 py-1.5 flex items-center gap-2 text-xs font-condensed font-bold uppercase tracking-wider opacity-90 group-hover:opacity-100 shadow-md">
+                  <ZoomIn className="w-4 h-4 text-[#E3371E]" />
+                  <span>Clique para ampliar</span>
+                </div>
+              </div>
             </div>
 
             {/* Distances Box (Dark Blue Background) */}
@@ -336,6 +384,62 @@ export const LocationLogisticsSection: React.FC<LocationLogisticsSectionProps> =
         </motion.div>
 
       </div>
+
+      {/* Modal / Pop-up de Ampliação da Imagem das Unidades */}
+      <AnimatePresence>
+        {modalImage && (
+          <div
+            className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/85 backdrop-blur-sm"
+            onClick={() => setModalImage(null)}
+          >
+            <motion.div
+              initial={{ opacity: 0, scale: 0.92 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.92 }}
+              transition={{ duration: 0.25 }}
+              className="relative max-w-4xl w-full bg-[#192F4D] text-white p-4 sm:p-6 shadow-2xl border border-white/10"
+              onClick={(e) => e.stopPropagation()}
+            >
+              {/* Header Modal */}
+              <div className="flex items-center justify-between border-b border-white/10 pb-3 mb-4">
+                <div>
+                  <h3 className="font-barlow font-black text-lg sm:text-2xl uppercase tracking-tight text-white flex items-center gap-2">
+                    <span className="w-1.5 h-5 bg-[#E3371E]" />
+                    {modalImage.title}
+                  </h3>
+                  <p className="font-condensed text-xs sm:text-sm text-slate-300 mt-0.5">{modalImage.subtitle}</p>
+                </div>
+                <button
+                  onClick={() => setModalImage(null)}
+                  className="p-2 bg-white/10 hover:bg-[#E3371E] text-white transition-colors cursor-pointer"
+                  aria-label="Fechar"
+                >
+                  <X className="w-5 h-5" />
+                </button>
+              </div>
+
+              {/* Image Preview */}
+              <div className="relative w-full max-h-[75vh] overflow-hidden flex items-center justify-center bg-black/40">
+                <img
+                  src={modalImage.src}
+                  alt={modalImage.title}
+                  className="max-h-[70vh] w-auto max-w-full object-contain mx-auto shadow-lg"
+                />
+              </div>
+
+              {/* Footer */}
+              <div className="mt-4 flex justify-end">
+                <button
+                  onClick={() => setModalImage(null)}
+                  className="px-6 py-2 bg-[#E3371E] hover:bg-[#102138] text-white font-barlow font-bold text-xs uppercase tracking-wider transition-all cursor-pointer"
+                >
+                  FECHAR
+                </button>
+              </div>
+            </motion.div>
+          </div>
+        )}
+      </AnimatePresence>
     </section>
   );
 };
