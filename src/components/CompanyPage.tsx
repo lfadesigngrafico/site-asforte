@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { motion } from 'motion/react';
+import { motion, AnimatePresence } from 'motion/react';
 import { LOGOS, INDUSTRIAL_IMAGES, COMPANY_HERO_ASSETS, COMPANY_CAROUSEL_IMAGES, COMPANY_UNIDADES_ASSETS, COMPANY_CONTROLE_ASSETS, COMPANY_FROTA_ASSETS, COMPANY_LICENSES_ASSETS } from '../constants/assets';
 import { FinalCTASection } from './FinalCTASection';
 import {
@@ -20,7 +20,8 @@ import {
   Contact,
   Wrench,
   Check,
-  X
+  X,
+  ZoomIn
 } from 'lucide-react';
 
 interface CompanyPageProps {
@@ -32,6 +33,7 @@ export const CompanyPage: React.FC<CompanyPageProps> = ({ onOpenQuoteModal, onNa
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isLicenseModalOpen, setIsLicenseModalOpen] = useState(false);
   const [licenseSlide, setLicenseSlide] = useState(0);
+  const [modalImage, setModalImage] = useState<{ src: string; title: string; subtitle: string } | null>(null);
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -303,7 +305,14 @@ export const CompanyPage: React.FC<CompanyPageProps> = ({ onOpenQuoteModal, onNa
 
               {/* Right Column: Image + Button */}
               <div className="lg:col-span-6 flex flex-col items-center space-y-5">
-                <div className="relative w-full overflow-hidden shadow-md group">
+                <div 
+                  onClick={() => setModalImage({
+                    src: COMPANY_UNIDADES_ASSETS.sjcImage,
+                    title: 'São José dos Campos | SP',
+                    subtitle: 'Usina de Asfalto — Asforte Concreto Asfáltico LTDA'
+                  })}
+                  className="relative w-full overflow-hidden shadow-md group cursor-pointer"
+                >
                   <img
                     src={COMPANY_UNIDADES_ASSETS.sjcImage}
                     alt="Usina de Asfalto - São José dos Campos"
@@ -311,22 +320,30 @@ export const CompanyPage: React.FC<CompanyPageProps> = ({ onOpenQuoteModal, onNa
                   />
 
                   {/* Top Badge */}
-                  <div className="absolute top-0 left-0 bg-[#102138]/90 text-white px-3 sm:px-4 py-2 flex items-center border-l-4 border-[#E3371E]">
-                    <span className="font-condensed font-bold text-xs sm:text-sm uppercase tracking-wider">
+                  <div className="absolute top-0 left-0 bg-[#102138]/90 text-white px-2.5 sm:px-4 py-1 sm:py-2 flex items-center border-l-2 sm:border-l-4 border-[#E3371E] z-10">
+                    <span className="font-condensed font-bold text-[10px] sm:text-sm uppercase tracking-wider">
                       LOCALIZAÇÃO E EFICIÊNCIA OPERACIONAL
                     </span>
                   </div>
 
-                  {/* Bottom Info Card */}
-                  <div className="absolute bottom-0 left-0 bg-white text-[#192F4D] p-3 sm:p-4 border-l-4 border-[#E3371E] max-w-[90%] sm:max-w-[85%] shadow-lg">
-                    <div className="flex items-center gap-2 font-barlow font-black text-sm sm:text-base text-[#192F4D] uppercase tracking-tight">
-                      <span>SÃO JOSÉ DOS CAMPOS | SP</span>
-                      <MapPin className="w-4 h-4 text-[#192F4D] shrink-0 fill-[#192F4D]/10" />
+                  {/* Click to Zoom indicator */}
+                  <div className="absolute inset-0 bg-black/20 group-hover:bg-black/40 transition-colors flex items-center justify-center">
+                    <div className="bg-[#192F4D]/90 text-white px-2.5 sm:px-3 py-1 sm:py-1.5 flex items-center gap-1.5 sm:gap-2 text-[10px] sm:text-xs font-condensed font-bold uppercase tracking-wider opacity-90 group-hover:opacity-100 shadow-md">
+                      <ZoomIn className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-[#E3371E]" />
+                      <span>Clique para ampliar</span>
                     </div>
-                    <p className="font-barlow font-bold text-xs sm:text-sm text-[#192F4D] mt-0.5">
+                  </div>
+
+                  {/* Bottom Info Card */}
+                  <div className="absolute bottom-0 left-0 bg-white text-[#192F4D] p-1.5 sm:p-4 border-l-2 sm:border-l-4 border-[#E3371E] max-w-[85%] shadow-lg z-10">
+                    <div className="flex items-center gap-1 sm:gap-2 font-barlow font-black text-[10px] sm:text-base text-[#192F4D] uppercase tracking-tight leading-tight">
+                      <span>SÃO JOSÉ DOS CAMPOS | SP</span>
+                      <MapPin className="w-2.5 h-2.5 sm:w-4 sm:h-4 text-[#192F4D] shrink-0 fill-[#192F4D]/10" />
+                    </div>
+                    <p className="font-barlow font-bold text-[9px] sm:text-sm text-[#192F4D] mt-0.5 leading-tight">
                       Asforte Concreto Asfáltico LTDA
                     </p>
-                    <p className="font-barlow text-[11px] sm:text-xs text-slate-500">
+                    <p className="font-barlow text-[8px] sm:text-xs text-slate-500 leading-tight">
                       Av. São Afonso Maria, 381, Bairro da Pernambucana
                     </p>
                   </div>
@@ -374,7 +391,14 @@ export const CompanyPage: React.FC<CompanyPageProps> = ({ onOpenQuoteModal, onNa
 
               {/* Right Column: Image + Button */}
               <div className="lg:col-span-6 flex flex-col items-center space-y-5">
-                <div className="relative w-full overflow-hidden shadow-md group">
+                <div 
+                  onClick={() => setModalImage({
+                    src: COMPANY_UNIDADES_ASSETS.santaIsabelImage,
+                    title: 'Santa Isabel | SP',
+                    subtitle: 'Usina de Asfalto — Pedreira PedraForte'
+                  })}
+                  className="relative w-full overflow-hidden shadow-md group cursor-pointer"
+                >
                   <img
                     src={COMPANY_UNIDADES_ASSETS.santaIsabelImage}
                     alt="Usina de Asfalto - Santa Isabel"
@@ -382,22 +406,30 @@ export const CompanyPage: React.FC<CompanyPageProps> = ({ onOpenQuoteModal, onNa
                   />
 
                   {/* Top Badge */}
-                  <div className="absolute top-0 left-0 bg-[#102138]/90 text-white px-3 sm:px-4 py-2 flex items-center border-l-4 border-[#E3371E]">
-                    <span className="font-condensed font-bold text-xs sm:text-sm uppercase tracking-wider">
+                  <div className="absolute top-0 left-0 bg-[#102138]/90 text-white px-2.5 sm:px-4 py-1 sm:py-2 flex items-center border-l-2 sm:border-l-4 border-[#E3371E] z-10">
+                    <span className="font-condensed font-bold text-[10px] sm:text-sm uppercase tracking-wider">
                       LOCALIZAÇÃO E EFICIÊNCIA OPERACIONAL
                     </span>
                   </div>
 
-                  {/* Bottom Info Card */}
-                  <div className="absolute bottom-0 left-0 bg-white text-[#192F4D] p-3 sm:p-4 border-l-4 border-[#E3371E] max-w-[90%] sm:max-w-[85%] shadow-lg">
-                    <div className="flex items-center gap-2 font-barlow font-black text-sm sm:text-base text-[#192F4D] uppercase tracking-tight">
-                      <span>SANTA ISABEL | SP</span>
-                      <MapPin className="w-4 h-4 text-[#192F4D] shrink-0 fill-[#192F4D]/10" />
+                  {/* Click to Zoom indicator */}
+                  <div className="absolute inset-0 bg-black/20 group-hover:bg-black/40 transition-colors flex items-center justify-center">
+                    <div className="bg-[#192F4D]/90 text-white px-2.5 sm:px-3 py-1 sm:py-1.5 flex items-center gap-1.5 sm:gap-2 text-[10px] sm:text-xs font-condensed font-bold uppercase tracking-wider opacity-90 group-hover:opacity-100 shadow-md">
+                      <ZoomIn className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-[#E3371E]" />
+                      <span>Clique para ampliar</span>
                     </div>
-                    <p className="font-barlow font-bold text-xs sm:text-sm text-[#192F4D] mt-0.5">
+                  </div>
+
+                  {/* Bottom Info Card */}
+                  <div className="absolute bottom-0 left-0 bg-white text-[#192F4D] p-1.5 sm:p-4 border-l-2 sm:border-l-4 border-[#E3371E] max-w-[85%] shadow-lg z-10">
+                    <div className="flex items-center gap-1 sm:gap-2 font-barlow font-black text-[10px] sm:text-base text-[#192F4D] uppercase tracking-tight leading-tight">
+                      <span>SANTA ISABEL | SP</span>
+                      <MapPin className="w-2.5 h-2.5 sm:w-4 sm:h-4 text-[#192F4D] shrink-0 fill-[#192F4D]/10" />
+                    </div>
+                    <p className="font-barlow font-bold text-[9px] sm:text-sm text-[#192F4D] mt-0.5 leading-tight">
                       Pedreira PedraForte
                     </p>
-                    <p className="font-barlow text-[11px] sm:text-xs text-slate-500">
+                    <p className="font-barlow text-[8px] sm:text-xs text-slate-500 leading-tight">
                       Rod. Pres. Dutra, KM 194,5
                     </p>
                   </div>
@@ -418,6 +450,62 @@ export const CompanyPage: React.FC<CompanyPageProps> = ({ onOpenQuoteModal, onNa
 
         </div>
       </section>
+
+      {/* Modal / Pop-up de Ampliação da Imagem das Unidades */}
+      <AnimatePresence>
+        {modalImage && (
+          <div
+            className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/85 backdrop-blur-sm"
+            onClick={() => setModalImage(null)}
+          >
+            <motion.div
+              initial={{ opacity: 0, scale: 0.92 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.92 }}
+              transition={{ duration: 0.25 }}
+              className="relative max-w-4xl w-full bg-[#192F4D] text-white p-4 sm:p-6 shadow-2xl border border-white/10"
+              onClick={(e) => e.stopPropagation()}
+            >
+              {/* Header Modal */}
+              <div className="flex items-center justify-between border-b border-white/10 pb-3 mb-4">
+                <div>
+                  <h3 className="font-barlow font-black text-lg sm:text-2xl uppercase tracking-tight text-white flex items-center gap-2">
+                    <span className="w-1.5 h-5 bg-[#E3371E]" />
+                    {modalImage.title}
+                  </h3>
+                  <p className="font-condensed text-xs sm:text-sm text-slate-300 mt-0.5">{modalImage.subtitle}</p>
+                </div>
+                <button
+                  onClick={() => setModalImage(null)}
+                  className="p-2 bg-white/10 hover:bg-[#E3371E] text-white transition-colors cursor-pointer"
+                  aria-label="Fechar"
+                >
+                  <X className="w-5 h-5" />
+                </button>
+              </div>
+
+              {/* Image Preview */}
+              <div className="relative w-full max-h-[75vh] overflow-hidden flex items-center justify-center bg-black/40">
+                <img
+                  src={modalImage.src}
+                  alt={modalImage.title}
+                  className="max-h-[70vh] w-auto max-w-full object-contain mx-auto shadow-lg"
+                />
+              </div>
+
+              {/* Footer */}
+              <div className="mt-4 flex justify-end">
+                <button
+                  onClick={() => setModalImage(null)}
+                  className="px-6 py-2 bg-[#E3371E] hover:bg-[#102138] text-white font-barlow font-bold text-xs uppercase tracking-wider transition-all cursor-pointer"
+                >
+                  FECHAR
+                </button>
+              </div>
+            </motion.div>
+          </div>
+        )}
+      </AnimatePresence>
 
       {/* DOBRA 05: CAPACIDADE OPERACIONAL (CARROSSEL) */}
       <section className="py-16 sm:py-20 lg:py-24 bg-[#EEEEEE] text-[#192F4D] border-b border-slate-300">
